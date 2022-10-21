@@ -5,9 +5,10 @@ const styles = StyleSheet.create({
       flex: 1,            
       backgroundColor: '#0d1921',      
     },
+
     divtitle:{
-        marginTop:  50,
-        marginLeft: 40,
+        marginTop:  '10%',
+        marginLeft: '10%',
     },
     title: {
         color: '#ffffff',
@@ -20,6 +21,41 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold"
     },
+
+    divnoticias:{
+        marginTop: '10%',
+        width: '80%',
+        marginLeft: '10%',
+        flex: 1,
+        
+    },
+    labelnoticia: {
+        color: '#ffffff',
+        fontSize: 25,
+        marginBottom: '5%',
+    },
+    divsroll:{
+        height: '100%',
+        flex: 1,
+    },
+    divnoticia:{
+        marginBottom: '7%',
+    },
+    titulonoticia: {
+        color: '#ffffff',
+        fontSize: 20,
+    },
+    subtitulonoticia: {
+        color: '#ffffff',
+        fontSize: 12,
+    },
+    textonoticia: {
+        marginTop: '2%',
+        color: '#ffffff',
+        fontSize: 15,
+        textAlign: 'justify',
+    },
+
     divform:{
         alignItems: "center",
         justifyContent: "center", 
