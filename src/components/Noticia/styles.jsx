@@ -116,6 +116,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginTop: 50,
     },
+    foto: {
+        color: '#ffffff',
+        fontSize: 12,
+    },
 });
 
 export default styles;

@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   Text,
-  TextInput,
   TouchableOpacity,
   View,
   SafeAreaView,
-  Pressable,
-  Keyboard,
-  ScrollView,
   RefreshControl,
   FlatList,
 
@@ -36,14 +32,10 @@ export default function Noticias() {
         .then(function (response) {
           setNoticias(response.data.noticias);
           setTotalPaginas(response.data.total_de_paginas);
-          //setTotalPaginas(response.total_de_paginas);
-          //console.log(response.data)
         })
         .catch(function (error) {
 
         });
-
-
     }, [])
   );
 
@@ -58,15 +50,10 @@ export default function Noticias() {
       .then(function (response) {
         setNoticias(response.data.noticias);
         setTotalPaginas(response.data.total_de_paginas);
-        //setTotalPaginas(response.total_de_paginas);
-        //console.log(response.json());
-        //console.log(JSON.parse(JSON.stringify(response)));
       })
       .catch(function (error) {
 
       });
-
-
   }
 
   async function voltaPagina() {
@@ -132,6 +119,7 @@ export default function Noticias() {
               conteudo={item.conteudo}
               permalink={item.permalink}
               formato={item.formato}
+              galeria={item.galeria}
               id={item.id}
 
             />

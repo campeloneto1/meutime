@@ -86,6 +86,7 @@ export default function Inicio() {
               conteudo={item.conteudo} 
               permalink={item.permalink} 
               formato={item.formato}
+              galeria={item.galeria}
               id={item.id} 
               
               />
