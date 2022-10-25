@@ -8,6 +8,8 @@ import { StyleSheet, Platform, SafeAreaView, Text } from "react-native";
 import Login from "./src/components/Login";
 import Inicio from "./src/components/Inicio";
 import Menu from "./src/components/Menu";
+import Noticia from "./src/components/Noticia";
+import Noticias from "./src/components/Noticias";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -41,6 +43,30 @@ function Tabs() {
               size={20}
               style={{ color: focused ? "#ffffff" : "#a1b5b5",  }}
               name="home"
+            />
+          ),
+        }}
+      />
+
+  <Tab.Screen
+        name="Notícias"
+        component={Noticias}
+        options={{
+          tabBarLabel: ({ focused, color, size }) => (
+            <Text
+              style={{
+                color: focused ? "#ffffff" : "#a1b5b5",
+                marginBottom: focused ? 10 : 0,
+              }}
+            >
+              Notícias
+            </Text>
+          ),
+          tabBarIcon: ({ focused, color, size }) => (
+            <MaterialCommunityIcons
+              size={20}
+              style={{ color: focused ? "#ffffff" : "#a1b5b5",}}
+              name="newspaper"
             />
           ),
         }}
@@ -80,6 +106,7 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Inicio" component={Tabs} />
+          <Stack.Screen name="Noticia" component={Noticia} />          
         </Stack.Navigator>
       </NavigationContainer>
     </Fragment>

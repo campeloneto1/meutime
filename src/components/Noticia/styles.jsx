@@ -9,12 +9,14 @@ const styles = StyleSheet.create({
     divtitle:{
         marginTop:  '10%',
         marginLeft: '10%',
+        width: '80%',
     },
     title: {
         color: '#ffffff',
         fontSize: 35,
         fontWeight: "bold",
         marginTop: 10,
+        textAlign: 'justify',
     },
     subtitle: {
         color: '#ffffff',
@@ -44,15 +46,8 @@ const styles = StyleSheet.create({
     titulonoticia: {
         color: '#ffffff',
         fontSize: 20,
-        textAlign: 'justify'
+        
     },
-    divsubtitulo:{
-        width: '100%',
-        height: 'auto',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    }, 
     subtitulonoticia: {
         color: '#ffffff',
         fontSize: 12,
@@ -114,6 +109,12 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 15,
         marginTop: 80,
+    },
+
+    fonte: {
+        color: '#ffffff',
+        fontSize: 15,
+        marginTop: 50,
     },
 });
 

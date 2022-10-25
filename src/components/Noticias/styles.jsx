@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-    }, 
+    },   
+   
     subtitulonoticia: {
         color: '#ffffff',
         fontSize: 12,
@@ -64,57 +65,24 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
     },
 
-    divform:{
-        alignItems: "center",
-        justifyContent: "center", 
-        marginTop: 50,
+    divpaginacao:{
+        width: '100%',
+        height: 'auto',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 50,
     },   
-    label: {
-        color: '#ffffff',
-        fontSize: 15,
-        marginTop: 20,
-    },
-    label2: {
-        color: '#ffffff',
-        fontSize: 15,
-        marginTop: 40,
-    },
-    input:{
-        width: "70%",
-        backgroundColor: "#333f48",
-        textAlign: 'center',
-        height:50,
+   
 
-        borderBottomWidth: 1,
-        borderColor: "#ffffff",
-        color: "#ffffff",
-    },
-
-    button:{
-        marginTop: 40,
-        backgroundColor: '#333f48',
-        width: '70%',
-        paddingTop: 14,
-        paddingBottom: 14,
-        borderRadius: 50,
-        alignItems: "center",
-        justifyContent: "center",
-     },
      textButton:{
         color: "#ffffff",
         fontWeight: 'bold',
         fontSize: 20,
      },
-     labelesquecisenha: {
-        color: '#ffffff',
-        fontSize: 15,
-        marginTop: 30,
-    },
-    labelcadastrese: {
-        color: '#ffffff',
-        fontSize: 15,
-        marginTop: 80,
-    },
+
+
+
 });
 
 export default styles;

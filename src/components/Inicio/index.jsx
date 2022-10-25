@@ -11,26 +11,37 @@ import {
   ScrollView,
   RefreshControl,
   FlatList,
+
 } from "react-native";
 import styles from "./styles";
-
 import axios from "axios";
+import Itens from "./Itens";
+
 
 export default function Inicio() {
-  const [refreshing, setRefreshing] = React.useState(false);
-  const [noticias, setNoticias] = React.useState([]);
+
+  const [refreshing, setRefreshing] = useState(false);
+  const [noticias, setNoticias] = useState([]);
+  const [totalpaginas, setTotalPaginas] = useState(0);
+  const [pagina, setPagina] = useState(1);
+  const [time, setTime] = useState('fortaleza');
+  var text = '';
 
   useFocusEffect(
     React.useCallback(() => {
       //getNoticias();
-      axios({
-        method: "get",
-        url: 'https://www.gazetaesportiva.com/times/flamengo/feed/',
+      //console.log('result');
+      axios.get('https://www.gazetaesportiva.com/wp-json/gazeta_esportiva/v1/noticias?categoria='+time+'&pagina='+pagina)
+      .then(function (response) {
+        setNoticias(response.data.noticias);
+        //setTotalPaginas(response.total_de_paginas);
+        //console.log(response.data)
       })
-        .then((rss) => {
-          console.log(rss.responseText);
-        })
-        .catch((error) => {});
+      .catch(function (error) {
+        
+      });
+    
+
     }, [])
   );
 
@@ -38,53 +49,22 @@ export default function Inicio() {
     getNoticias();
   }, []);
 
-  async function getNoticias() {}
+  async function getNoticias() {
+    axios.get('https://www.gazetaesportiva.com/wp-json/gazeta_esportiva/v1/noticias?categoria='+time+'&pagina='+pagina, {
+        "Content-Type": "application/xml; charset=utf-8"
+       })
+      .then(function (response) {
+        setNoticias(response.data.noticias);
+        //setTotalPaginas(response.total_de_paginas);
+        //console.log(response.json());
+        //console.log(JSON.parse(JSON.stringify(response)));
+      })
+      .catch(function (error) {
+        
+      });
 
-  const DATA = [
-    {
-      id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-      title: "First Item",
-      data: "21/10/2022 15:00",
-      texto:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus mi quis consectetur. Nullam ac turpis quis magna sollicitudin pretium id eget lorem. Vivamus auctor feugiat dolor, non sagittis erat vulputate at. Aliquam vitae facilisis est. Maecenas faucibus orci in diam tempor, a scelerisque ligula hendrerit.",
-    },
-    {
-      id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-      title: "Second Item",
-      data: "21/10/2022 15:00",
-      texto:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus mi quis consectetur. Nullam ac turpis quis magna sollicitudin pretium id eget lorem. Vivamus auctor feugiat dolor, non sagittis erat vulputate at. Aliquam vitae facilisis est. Maecenas faucibus orci in diam tempor, a scelerisque ligula hendrerit.",
-    },
-    {
-      id: "58694a0f-3da1-471f-bd96-145571e29d72",
-      title: "Third Item",
-      data: "21/10/2022 15:00",
-      texto:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus mi quis consectetur. Nullam ac turpis quis magna sollicitudin pretium id eget lorem. Vivamus auctor feugiat dolor, non sagittis erat vulputate at. Aliquam vitae facilisis est. Maecenas faucibus orci in diam tempor, a scelerisque ligula hendrerit.",
-    },
-    {
-      id: "58694a0f-3da1-471f-bd96-145571e29d74",
-      title: "Fourth Item",
-      data: "21/10/2022 15:00",
-      texto:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus mi quis consectetur. Nullam ac turpis quis magna sollicitudin pretium id eget lorem. Vivamus auctor feugiat dolor, non sagittis erat vulputate at. Aliquam vitae facilisis est. Maecenas faucibus orci in diam tempor, a scelerisque ligula hendrerit.",
-    },
-    {
-      id: "58694a0f-3da1-471f-bd96-145571e29d75",
-      title: "Fifth Item",
-      data: "21/10/2022 15:00",
-      texto:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus mi quis consectetur. Nullam ac turpis quis magna sollicitudin pretium id eget lorem. Vivamus auctor feugiat dolor, non sagittis erat vulputate at. Aliquam vitae facilisis est. Maecenas faucibus orci in diam tempor, a scelerisque ligula hendrerit.",
-    },
-  ];
 
-  const Item = ({ item }) => (
-    <View style={styles.divnoticia}>
-      <Text style={styles.titulonoticia}>{item.title}</Text>
-      <Text style={styles.subtitulonoticia}>{item.data}</Text>
-      <Text style={styles.textonoticia}>{item.texto}</Text>
-    </View>
-  );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,11 +74,22 @@ export default function Inicio() {
       </View>
       <View style={styles.divnoticias}>
         <Text style={styles.labelnoticia}>Últimas notícias:</Text>
+        
         <FlatList
           showsVerticalScrollIndicator={false}
           style={styles.divsroll}
-          data={DATA}
-          renderItem={Item}
+          data={noticias}
+          renderItem={({item})=>{
+            return <Itens 
+              titulo={item.titulo} 
+              data={item.data} 
+              conteudo={item.conteudo} 
+              permalink={item.permalink} 
+              formato={item.formato}
+              id={item.id} 
+              
+              />
+        }}
           keyExtractor={(item) => item.id}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
