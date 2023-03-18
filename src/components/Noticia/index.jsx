@@ -109,7 +109,7 @@ export default function Noticia({ route, navigation }) {
                   )}
               />
               )}
-               {route.params.formato == 'video' && (
+              {route.params.formato == 'video' && (
                   <Text style={styles.subtitulonoticia}>Vídeo</Text>  
               )}
 
